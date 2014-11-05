@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="person" class="advice.Person">
+        <constructor-arg index="0" value="Binfang"/>
+        <constructor-arg index="1" value="24"/>
+    </bean>
+
+    <bean id="hijackBeforeMethod" class="advice.HijackBeforeMethod"/>
+
+    <bean id="hijackAfterMethod" class="advice.HijackAfterMethod"/>
+
+    <bean id="hijackThrowException" class="advice.HijackThrowException"/>
+
+    <bean id="HijackAroundException" class="advice.HijackAroundMethod"/>
+
+    <!--'target' define which bean you want to hijack-->
+    <!--'interceptorNames' define which class(advice) you want to apply on this proxy/target object.-->
+    <bean id="personProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="person"/>
+        <property name="interceptorNames">
+            <list>
+                <!--the order is the executing order of the interceptor-->
+                <value>hijackBeforeMethod</value>
+                <value>hijackAfterMethod</value>
+                <value>HijackAroundException</value>
+                <value>hijackThrowException</value>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>
