@@ -87,3 +87,6 @@ Use tips: Check out the project, go to the project directory, run 'gradle idea',
         HijackThrowException
         HijackAroundMethod:exception
 
+    1.10 Advice - Indicate the action to take either before or after the method execution.
+         PointCut - Indicate which method should be intercept, by method name or regular expression pattern
+         Advisor - Group 'Advice' and 'PointCut' into a single unit, and pass it to a proxy factory object.

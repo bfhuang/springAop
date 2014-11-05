@@ -14,7 +14,17 @@
 
     <bean id="hijackThrowException" class="advice.HijackThrowException"/>
 
-    <bean id="HijackAroundException" class="advice.HijackAroundMethod"/>
+    <!--Advice - Indicate the action to take either before or after the method execution.-->
+    <!--PointCut - Indicate which method should be intercept, by method name or regular expression pattern-->
+    <!--Advisor - Group 'Advice' and 'PointCut' into a single unit, and pass it to a proxy factory object.-->
+    <bean id="HijackAroundMethod" class="advice.HijackAroundMethod"/>
+    <bean id="personPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="throwException"/>
+    </bean>
+    <bean id="personAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="personPointcut"/>
+        <property name="advice" ref="HijackAroundMethod"/>
+    </bean>
 
     <!--'target' define which bean you want to hijack-->
     <!--'interceptorNames' define which class(advice) you want to apply on this proxy/target object.-->
@@ -22,10 +32,12 @@
         <property name="target" ref="person"/>
         <property name="interceptorNames">
             <list>
+                <!--the order is the executing order of the interceptor-->
                 <value>hijackBeforeMethod</value>
                 <value>hijackAfterMethod</value>
-                <value>HijackAroundException</value>
                 <value>hijackThrowException</value>
+                <!--can use the advisor and advice also-->
+                <value>personAdvisor</value>
             </list>
         </property>
     </bean>
