@@ -7,7 +7,9 @@ repositories {
 
 dependencies {
     compile 'org.springframework:spring-context:4.0.0.RELEASE',
-            'cglib:cglib:2.2.2'
+            'cglib:cglib:2.2.2',
+            'org.aspectj:aspectjrt:1.6.11',
+            'org.aspectj:aspectjweaver:1.6.11'
 
     testCompile 'junit:junit:4.11'
 
