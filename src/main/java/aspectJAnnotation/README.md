@@ -1,6 +1,9 @@
 In this tutorial, we show you how to integrate AspectJ annotation with Spring AOP framework. In simple, Spring AOP + AspectJ allow you to intercept method easily.
 To use aspectJ annotation, you need to add the dependency.
 
+
+Spring AOP only supports method execution join points for Spring beans
+
 @Before – Run before the method execution
 @After – Run after the method returned a result
 @AfterReturning – Run after the method returned a result, intercept the returned result as well.

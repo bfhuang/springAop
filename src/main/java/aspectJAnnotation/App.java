@@ -9,7 +9,7 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("aspectJAnnotation.xml");
         CustomerBo customer = (CustomerBo) context.getBean("customerBo");
 
-//        customer.addCustomer();
+//        Spring AOP only supports method execution join points for Spring beans
 //
 //        customer.addCustomerReturnValue();
 
@@ -18,6 +18,6 @@ public class App {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        customer.addCustomerAround();
+//        customer.addCustomerAround();
     }
 }
